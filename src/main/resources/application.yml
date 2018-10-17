@@ -1,0 +1,21 @@
+# 配置开发和生产环境：格式为application-{profile}.yml，其中{profile}对应你的环境标识
+spring:
+  profiles:
+    active: dev
+  datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/db_test?setUnicode=true&characterEncoding=utf8
+        username: root
+        password: root
+
+test:
+  user:
+    username: gaox
+    age: 18
+    toString: the age of ${test.user.username} is ${test.user.age}
+
+
+
+# mybatis
+mybatis:
+  type-aliases-package: com.gaox.pojo
