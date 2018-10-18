@@ -7,6 +7,21 @@ spring:
         url: jdbc:mysql://localhost:3306/db_test?setUnicode=true&characterEncoding=utf8
         username: root
         password: root
+  kafka:
+    # kafka服务器地址(可以多个)
+    bootstrap-servers: 10.12.29.73:9092
+    producer:
+      # key/value的序列化
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      # 指定一个默认的组名
+      group-id: demo
+      enable-auto-commit: true
+      # key/value的反序列化
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
 
 test:
   user:
