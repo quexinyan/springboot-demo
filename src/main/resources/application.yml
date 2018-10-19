@@ -8,7 +8,7 @@ spring:
         username: root
         password: root
   kafka:
-    # kafka服务器地址(可以多个)
+    # kafka服务器地址(可以多个) 对应kafka server.properties文件中的advertised.listeners的值
     bootstrap-servers: 10.12.29.73:9092
     producer:
       # key/value的序列化
