@@ -21,6 +21,9 @@ spring:
       # key/value的反序列化
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  redis:
+    host: 127.0.0.1
+    port: 6379
 
 
 test:
