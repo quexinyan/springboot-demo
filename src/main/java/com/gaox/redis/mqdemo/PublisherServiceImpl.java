@@ -19,6 +19,7 @@ public class PublisherServiceImpl implements PublisherService{
 
         try {
             redisTemplate.convertAndSend("TOPIC_MESSAGE", content);
+            redisTemplate.convertAndSend("TOPIC_MESSAGE2", content);
             return "消息发送成功了";
 
         } catch (Exception e) {

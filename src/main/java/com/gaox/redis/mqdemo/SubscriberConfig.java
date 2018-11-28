@@ -26,7 +26,9 @@ public class SubscriberConfig {
     }
 
     /**
-     * 创建消息监听容器
+     * redis消息监听器容器
+     * 可以添加多个监听不同话题的redis监听器，只需要把消息监听器和相应的消息订阅处理器绑定，该消息监听器
+     * 通过反射技术调用消息订阅处理器的相关方法进行一些业务处理
      * @param redisConnectionFactory
      * @param messageListenerAdapter
      * @return
@@ -35,7 +37,9 @@ public class SubscriberConfig {
     public RedisMessageListenerContainer getRedisMessageListenerContainer(RedisConnectionFactory redisConnectionFactory, MessageListenerAdapter messageListenerAdapter) {
         RedisMessageListenerContainer redisMessageListenerContainer = new RedisMessageListenerContainer();
         redisMessageListenerContainer.setConnectionFactory(redisConnectionFactory);
+        // 订阅主题TOPIC_MESSAGE，可以同时订阅多个
         redisMessageListenerContainer.addMessageListener(messageListenerAdapter, new PatternTopic("TOPIC_MESSAGE"));
+        redisMessageListenerContainer.addMessageListener(messageListenerAdapter, new PatternTopic("TOPIC_MESSAGE2"));
         return redisMessageListenerContainer;
     }
 }
