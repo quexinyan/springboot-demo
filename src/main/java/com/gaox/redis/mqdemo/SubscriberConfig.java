@@ -17,12 +17,14 @@ public class SubscriberConfig {
 
     /**
      * 消息监听适配器，注入接受消息方法，输入方法名字 反射方法
+     * 如果不指定消息接收的方法，消息监听器会默认的寻找Receiver中的handleMessage这个方法作为消息接收的方法
      * @param receiver
      * @return
      */
     @Bean
     public MessageListenerAdapter getMessageListenerAdapter(Receiver receiver){
-        return new MessageListenerAdapter(receiver, "receiveMessage"); //当没有继承MessageListener时需要写方法名字
+        return new MessageListenerAdapter(receiver);
+        //return new MessageListenerAdapter(receiver, "receiveMessage"); //当没有继承MessageListener时需要写方法名字
     }
 
     /**
@@ -39,7 +41,7 @@ public class SubscriberConfig {
         redisMessageListenerContainer.setConnectionFactory(redisConnectionFactory);
         // 订阅主题TOPIC_MESSAGE，可以同时订阅多个
         redisMessageListenerContainer.addMessageListener(messageListenerAdapter, new PatternTopic("TOPIC_MESSAGE"));
-        redisMessageListenerContainer.addMessageListener(messageListenerAdapter, new PatternTopic("TOPIC_MESSAGE2"));
+        //redisMessageListenerContainer.addMessageListener(messageListenerAdapter, new PatternTopic("TOPIC_MESSAGE2"));
         return redisMessageListenerContainer;
     }
 }
